@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.model.mapper.TodoMapper">
+
+    <select id="selectTodoList" resultType="com.example.demo.model.dto.Todo">
+  SELECT
+    TODO_NO       todoNo,
+    TODO_TITLE    todoTitle,
+    TODO_CONTENT  todoDetail,
+    COMPLETE      todoComplete,
+    REG_DATE      regDate
+  FROM TB_TODO
+</select>
+
+
+<insert id="insertTodoList"  parameterType="com.example.demo.model.dto.Todo" useGeneratedKeys="true" keyProperty="todoNo" keyColumn="TODO_NO">        
+    INSERT INTO TB_TODO (
+        TODO_NO,
+        TODO_TITLE,
+        TODO_CONTENT,
+        COMPLETE,
+        REG_DATE
+    ) VALUES (
+        SEQ_TODO_NO.NEXTVAL,
+        #{todoTitle},
+        #{todoDetail},
+        DEFAULT,
+        DEFAULT
+    )
+</insert>
+
+
+<delete id="deleteTodoList">
+
+DELETE FROM "TB_TODO" WHERE TODO_NO = #{todoNo}
+
+</delete>
+
+
+<update id="updateTodoComplete">
+
+UPDATE "TB_TODO" SET COMPLETE = #{todoComplete}
+    WHERE TODO_NO = #{todoNo}
+
+</update>
+
+
+<update id="updateTodoTitle">
+
+UPDATE "TB_TODO" SET TODO_TITLE = #{todoTitle}
+    WHERE TODO_NO = #{todoNo}
+
+</update>
+
+<update id="updateTodoDetail">
+
+UPDATE "TB_TODO" SET TODO_CONTENT = #{todoDetail}
+    WHERE TODO_NO = #{todoNo}
+
+</update>
+
+
+
+</mapper>
