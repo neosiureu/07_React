@@ -8,6 +8,7 @@ import Chart from "./Chart";
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import logo from "../assets/logo.jpg";
+import KakaoMap from "./kakaoMap";
 
 // react- router - dom : react 어플리케이션에서 라우팅을 구현하기 위해 사용하는 라이브러리
 
@@ -16,8 +17,6 @@ import logo from "../assets/logo.jpg";
 export default function DashBoard() {
   const globalState = useContext(AuthContext);
   const navigate = useNavigate();
-
-  // 라우팅은 태그 자체가 다름!
 
   const goDashBoardMain = () => {
     // "메인 페이지로 이동" location.href = "/"도 사용은 가능 함 (기존 js 식으로) => 동기식이라 사용 안 함
@@ -48,6 +47,7 @@ export default function DashBoard() {
         <NavLink to="/statistics">통계</NavLink>
         <NavLink to="/restore">복구</NavLink>
         <NavLink to="/manager">관리자메뉴</NavLink>
+        <NavLink to="/kakaoMap">카카오맵</NavLink>
       </div>
 
       {/* Route를 이용하여 각 URL에 맞게 컴포넌트를 연결한다 */}
@@ -57,14 +57,8 @@ export default function DashBoard() {
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/restore" element={<Restore />} />
         <Route path="/manager" element={<Manager />} />
+        <Route path="/kakaoMap" element={<KakaoMap />} />
       </Routes>
-      {/* 
-      npm install recharts
-      <ul className="tab-box">
-        <li className="active">복구</li>
-        <li>통계</li>
-        <li>관리자 메뉴</li>
-      </ul> */}
     </div>
   );
 }

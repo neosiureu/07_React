@@ -40,7 +40,7 @@ export default function Manager() {
 
   useEffect(() => {
     const fetchAdminList = async () => {
-      const { data } = await axiosApi.get("/admin/adminList");
+      const { data } = await axiosApi.get("/admin/getadminList");
       setAdminData(data);
     };
     fetchAdminList();
